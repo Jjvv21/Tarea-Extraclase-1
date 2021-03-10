@@ -8,10 +8,12 @@ struct Nodo{
         Nodo *siguiente;
 
 };
+void menu();
 void insertarLista_Final(Nodo *&, int);
 void insertarLista_Inicio(Nodo *&, int);
 void mostrarLista(Nodo *);
-void menu();
+void buscarLista(Nodo *,int);
+
 Nodo *lista = NULL;
 
 int main() {
@@ -30,7 +32,8 @@ void menu() {
         cout<<"1. Insertar elementos a la lista Final\n";
         cout<<"2. Insertar elementos a la lista Inicio\n";
         cout<<"3. Mostrar elementos de la lista\n";
-        cout<<"4. Salir\n";
+        cout<<"4. Buscar elemento de la lista\n";
+        cout<<"5. Salir\n";
         cout<<"Opcion: ";
         cin>>opcion;
         
@@ -51,9 +54,17 @@ void menu() {
                 cout<<"\n";
                 system("pause");
                 break;
+            case 4:cout<<" Digite un numero: ";
+                cin>>dato;
+                buscarLista(lista,dato);
+                cout<<"\n";
+                system("pause");
+                break;
         }
+        
+        
         system("cls");
-    }while(opcion != 4);
+    }while(opcion != 5);
 
 }
 
@@ -98,4 +109,24 @@ void mostrarLista(Nodo *lista){
         actual = actual->siguiente;
     }
     cout<<"La lista esta vacia";
+}
+
+void buscarLista(Nodo *lista, int n){
+	bool bandera = false; 
+	
+	Nodo *actual = new Nodo();
+	actual = lista; 
+	
+	while((actual!= NULL) && (actual->dato<=n)){
+		if(actual->dato ==n ){
+			bandera = true; 
+		}
+		actual = actual->siguiente;
+	}
+	if(bandera== true){
+		cout<<"El elemento ("<<n<<") ha sido encontrado en la lista\n";
+	}
+	else{
+		cout<<"El elemento no ha sido encontrado en la lista\n";
+	}
 }
