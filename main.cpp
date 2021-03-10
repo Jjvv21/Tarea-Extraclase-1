@@ -117,7 +117,7 @@ void mostrarLista(Nodo *lista){
         cout<<actual->dato<<"-->";
         actual = actual->siguiente;
     }
-    cout<<"La lista esta vacia";
+    cout<<"NULL";
 }
 
 void buscarLista(Nodo *lista, int n){
@@ -146,13 +146,14 @@ void eliminarNodo(Nodo *&lista , int n){
 		Nodo *anterior = NULL;
 		
 		aux_borrar = lista; 
+		
 		//Recorrer la lista
-		while((aux_borrar!= NULL)&& (aux_borrar->dato !=n)){
+		while((aux_borrar != NULL) && (aux_borrar->dato != n)){
 			anterior = aux_borrar;
 			aux_borrar = aux_borrar->siguiente;
 		}
 		//El elemento no ha sido encontrado
-		if(aux_borrar = NULL){
+		if(aux_borrar == NULL){
 			cout<<"El elemento no ha sido encontrado";
 		}
 		//El primer elemento es el que vamos a eliminar
