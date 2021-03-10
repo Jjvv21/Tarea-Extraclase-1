@@ -13,6 +13,7 @@ void insertarLista_Final(Nodo *&, int);
 void insertarLista_Inicio(Nodo *&, int);
 void mostrarLista(Nodo *);
 void buscarLista(Nodo *,int);
+void eliminarNodo(Nodo *&, int);
 
 Nodo *lista = NULL;
 
@@ -31,9 +32,10 @@ void menu() {
         cout<<"\t. Menu: \n";
         cout<<"1. Insertar elementos a la lista Final\n";
         cout<<"2. Insertar elementos a la lista Inicio\n";
-        cout<<"3. Mostrar elementos de la lista\n";
-        cout<<"4. Buscar elemento de la lista\n";
-        cout<<"5. Salir\n";
+        cout<<"3. Eliminar elemento de la lista\n";
+        cout<<"4. Mostrar elementos de la lista\n";
+        cout<<"5. Buscar elemento de la lista\n";
+        cout<<"6. Salir\n";
         cout<<"Opcion: ";
         cin>>opcion;
         
@@ -50,21 +52,28 @@ void menu() {
                 cout<<"\n";
                 system("pause");
                 break;    
-            case 3:mostrarLista(lista);
+            case 3:cout<<" Digite el elemento que quiera eliminar: ";
+                cin>>dato;
+                eliminarNodo(lista,dato);
                 cout<<"\n";
                 system("pause");
                 break;
-            case 4:cout<<" Digite un numero: ";
+            case 4:mostrarLista(lista);
+                cout<<"\n";
+                system("pause");
+                break;
+            case 5:cout<<" Digite un numero: ";
                 cin>>dato;
                 buscarLista(lista,dato);
                 cout<<"\n";
                 system("pause");
                 break;
+            
         }
         
         
         system("cls");
-    }while(opcion != 5);
+    }while(opcion != 6);
 
 }
 
@@ -128,5 +137,33 @@ void buscarLista(Nodo *lista, int n){
 	}
 	else{
 		cout<<"El elemento no ha sido encontrado en la lista\n";
+	}
+}
+void eliminarNodo(Nodo *&lista , int n){
+	//Preguntar si la lista esta vacia 
+	if(lista != NULL){
+		Nodo *aux_borrar;
+		Nodo *anterior = NULL;
+		
+		aux_borrar = lista; 
+		//Recorrer la lista
+		while((aux_borrar!= NULL)&& (aux_borrar->dato !=n)){
+			anterior = aux_borrar;
+			aux_borrar = aux_borrar->siguiente;
+		}
+		//El elemento no ha sido encontrado
+		if(aux_borrar = NULL){
+			cout<<"El elemento no ha sido encontrado";
+		}
+		//El primer elemento es el que vamos a eliminar
+		else if(anterior == NULL){
+			lista = lista->siguiente;
+			delete aux_borrar; 
+		}
+		//El elemento esta en la lista, pero no es el primer nodo	
+		else{
+			anterior->siguiente = aux_borrar->siguiente;
+			delete aux_borrar;
+		}
 	}
 }
