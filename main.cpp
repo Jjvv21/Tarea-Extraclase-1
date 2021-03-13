@@ -5,20 +5,27 @@ using namespace std;
 
 struct Nodo{
         int dato;
+        Nodo *direccion;
         Nodo *siguiente;
-
+        
+        
 };
+
 void menu();
 void insertarLista_Final(Nodo *&, int);
 void insertarLista_Inicio(Nodo *&, int);
 void mostrarLista(Nodo *);
 void buscarLista(Nodo *,int);
 void eliminarNodo(Nodo *&, int);
+void guardarMemoria(Nodo *&);
 
 Nodo *lista = NULL;
+Nodo *listaCollector = NULL;
+
 
 int main() {
-
+	
+	
     menu();
     getch();
     return 0;
@@ -76,6 +83,32 @@ void menu() {
     }while(opcion != 6);
 
 }
+class Collector{
+	private:
+		Nodo *direccion;
+	public:
+		Collector(Nodo *&);//constructor
+		void insertarDir();
+
+		
+};
+
+//Constructor, nos sirve para inicializar los atributos 
+Collector::Collector(Nodo *&_direccion){
+	direccion = _direccion;
+	
+}
+
+void Collector::insertarDir(){
+	Nodo *nuevoNodo = new Nodo();
+    nuevoNodo = direccion;
+    cout<<"\tElemento \t"<<nuevoNodo<<"\tinsertado a lista correctamente\n";
+    nuevoNodo->siguiente = listaCollector;
+    listaCollector = nuevoNodo;
+    cout<<"\tElemento \t"<<direccion<<"\tinsertado a lista correctamente\n";
+	 
+}
+
 
 
 void insertarLista_Final(Nodo *&lista, int n){
@@ -96,19 +129,23 @@ void insertarLista_Final(Nodo *&lista, int n){
         aux2->siguiente = nuevoNodo;
     }
     nuevoNodo->siguiente = aux1;
+    Collector c1(nuevoNodo);
+    c1.insertarDir();
     cout<<"\tElemento \t"<<n<<"\tinsertado a lista correctamente\n";
 }
 
 
 void insertarLista_Inicio(Nodo *&lista, int n){
     Nodo *nuevoNodo = new Nodo();
+    Nodo *nuevoNodoC = new Nodo();
     nuevoNodo->dato =n;
+    nuevoNodoC->direccion = nuevoNodo;
     nuevoNodo->siguiente = lista;
     lista = nuevoNodo;
+    Collector c1(nuevoNodo);
+    c1.insertarDir();
     cout<<"\tElemento \t"<<n<<"\tinsertado a lista correctamente\n";
 }
-
-
 
 void mostrarLista(Nodo *lista){
     Nodo *actual = new Nodo();
