@@ -3,6 +3,7 @@
 #include <conio.h>
 using namespace std;
 
+//Estructura Nodo
 struct Nodo{
         int dato;
         Nodo *direccion;
@@ -11,6 +12,7 @@ struct Nodo{
         
 };
 
+//Referencia a los  metodos que se utilizan y las listas globales
 void menu();
 void insertarLista_Final(Nodo *&, int);
 void insertarLista_Inicio(Nodo *&, int);
@@ -23,6 +25,7 @@ Nodo *lista = NULL;
 Nodo *listaCollector = NULL;
 
 
+
 int main() {
 	
 	
@@ -32,6 +35,7 @@ int main() {
 
 }
 
+//Menu para seleccionar la operacion a realizar
 void menu() {
     int opcion, dato;
 
@@ -83,6 +87,7 @@ void menu() {
     }while(opcion != 6);
 
 }
+//Clase colector que almacena el espacio en memoria
 class Collector{
 	private:
 		Nodo *direccion;
@@ -99,10 +104,10 @@ Collector::Collector(Nodo *&_direccion){
 	
 }
 
+//Metodo que inserta en una lista las posiciones en memoria 
 void Collector::insertarDir(){
 	Nodo *nuevoNodo = new Nodo();
     nuevoNodo = direccion;
-    cout<<"\tElemento \t"<<nuevoNodo<<"\tinsertado a lista correctamente\n";
     nuevoNodo->siguiente = listaCollector;
     listaCollector = nuevoNodo;
     cout<<"\tElemento \t"<<direccion<<"\tinsertado a lista correctamente\n";
@@ -110,7 +115,7 @@ void Collector::insertarDir(){
 }
 
 
-
+//Metodo para insertar al final de la lista
 void insertarLista_Final(Nodo *&lista, int n){
     Nodo *nuevoNodo = new Nodo();
     nuevoNodo->dato =n;
@@ -134,7 +139,7 @@ void insertarLista_Final(Nodo *&lista, int n){
     cout<<"\tElemento \t"<<n<<"\tinsertado a lista correctamente\n";
 }
 
-
+//Metodo para insertar al principio de la lista
 void insertarLista_Inicio(Nodo *&lista, int n){
     Nodo *nuevoNodo = new Nodo();
     Nodo *nuevoNodoC = new Nodo();
@@ -147,6 +152,7 @@ void insertarLista_Inicio(Nodo *&lista, int n){
     cout<<"\tElemento \t"<<n<<"\tinsertado a lista correctamente\n";
 }
 
+//Metodo para mostrar la lista con numeros
 void mostrarLista(Nodo *lista){
     Nodo *actual = new Nodo();
     actual=lista;
@@ -157,6 +163,7 @@ void mostrarLista(Nodo *lista){
     cout<<"NULL";
 }
 
+//Metodo para buscar un elemento dentro de la lista
 void buscarLista(Nodo *lista, int n){
 	bool bandera = false; 
 	
@@ -176,6 +183,8 @@ void buscarLista(Nodo *lista, int n){
 		cout<<"El elemento no ha sido encontrado en la lista\n";
 	}
 }
+
+
 void eliminarNodo(Nodo *&lista , int n){
 	//Preguntar si la lista esta vacia 
 	if(lista != NULL){
