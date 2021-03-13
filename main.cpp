@@ -11,6 +11,7 @@ struct Nodo{
     Nodo *_direccion;
 };
 
+
 //Referencia a los  metodos que se utilizan y las listas globales
 void menu();
 void insertarLista_Final(Nodo *&, int);
@@ -108,6 +109,7 @@ void Collector::insertarDir(Nodo *&lista, Nodo *&direccion){
     cout<<"\tElemento \t"<<direccion<<"\tinsertado a lista correctamente\n";
 
 }
+//Metodo para mostrar la lista con las direcciones en memoria
 void Collector::mostrarListaCollector(Nodo *&){
     Nodo *actual = new Nodo();
     actual=listaCollector;
@@ -117,7 +119,7 @@ void Collector::mostrarListaCollector(Nodo *&){
     }
     cout<<"NULL";
 }
-
+//Metodo para llamar la clase Collector y mostrar la lista
 void mostrarListaCollector(){
     Collector c1;
     c1.mostrarListaCollector(listaCollector);
@@ -194,7 +196,7 @@ void buscarLista(Nodo *lista, int n){
     }
 }
 
-
+//Metodo para eliminar nodos en la lista de numeros
 void eliminarNodo(Nodo *&lista , int n){
     Collector c1;
     //Preguntar si la lista esta vacia
